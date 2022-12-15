@@ -8,19 +8,19 @@ start_time = time.time()
 def main():
     stocks_list = read_csv()
 
-    print(f"\nProcessing {len(stocks_list)} shares:")
+    print(f"\nProcessing {len(stocks_list)} stocks:")
 
-    best_combo = set_combos(stocks_list)
+    best_combo = get_combos(stocks_list)
 
     print(best_combo)
-    print(time.time() - start_time, "seconds")
+    print(round(time.time() - start_time, 2), "seconds elapsed")
 
 
 def read_csv():
     with open("data/test.csv") as csvfile:
-        stocks_file = csv.reader(csvfile, delimiter=',')
-
         stocks = []
+
+        stocks_file = csv.reader(csvfile, delimiter=',')
         for row in stocks_file:
             stocks.append(
                 (row[0], float(row[1]), float(row[2]))
@@ -28,7 +28,7 @@ def read_csv():
         return stocks
 
 
-def set_combos(stocks_list):
+def get_combos(stocks_list):
     profit = 0
     best_combo = []
     best_cost = 0
