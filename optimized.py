@@ -4,8 +4,8 @@ import time
 start_time = time.time()
 
 
-def optimized():
-    stocks_list = read_csv()
+def optimized(file):
+    stocks_list = read_csv(file)
 
     print(f"\nProcessing {len(stocks_list)} stocks:")
 
@@ -15,15 +15,13 @@ def optimized():
     print(round(time.time() - start_time, 2), "seconds elapsed")
 
 
-def read_csv():
-    with open("data/dataset2_Python+P7.csv") as csvfile:
-        next(csvfile)
+def read_csv(file):
+    with open("data/" + file) as csvfile:
         stocks = []
-
         stocks_file = csv.reader(csvfile, delimiter=',')
 
         for row in stocks_file:
-            if float(row[1]) <= 0 or float(row[2]) <= 0:
+            if row[0] == "name" or float(row[1]) <= 0 or float(row[2]) <= 0:
                 pass
             else:
                 stock = (
@@ -38,6 +36,7 @@ def read_csv():
 def get_combos(stocks_list):
     cost = []
     profit = []
+    best_combo = []
     stocks = len(stocks_list)
     available_money = int(500 * 100)
 
@@ -54,8 +53,6 @@ def get_combos(stocks_list):
             else:
                 table[i][w] = table[i - 1][w]
 
-    best_combo = []
-
     while available_money >= 0 and stocks >= 0:
 
         if table[stocks][available_money] == \
@@ -67,6 +64,3 @@ def get_combos(stocks_list):
         stocks -= 1
 
     return best_combo
-
-
-optimized()
