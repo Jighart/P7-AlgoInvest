@@ -6,13 +6,22 @@ start_time = time.time()
 
 def optimized(file):
     stocks_list = read_csv(file)
-
     print(f"\nProcessing {len(stocks_list)} stocks:")
 
     best_combo = get_combos(stocks_list)
 
-    print(best_combo)
-    print(round(time.time() - start_time, 2), "seconds elapsed")
+    total_cost = 0
+    total_profit = 0
+
+    print(f"Best option selected: {len(best_combo)} stocks\n")
+    for stock in best_combo:
+        print(f"{stock[0]}, ", end='')
+        total_cost += stock[1]
+        total_profit += stock[1] * stock[2]
+
+    print(f"\n\nTotal cost: {round(total_cost / 100, 2)}€")
+    print(f"Total profit: {round(total_profit / 10000, 2)}€")
+    print("Time spent:", round(time.time() - start_time, 2), "seconds")
 
 
 def read_csv(file):
