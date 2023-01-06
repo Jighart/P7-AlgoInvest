@@ -1,10 +1,9 @@
 import csv
 import time
 
-start_time = time.time()
-
 
 def optimized(file):
+    start_time = time.time()
     stocks_list = read_csv(file)
     print(f"\nProcessing {len(stocks_list)} stocks:")
 
