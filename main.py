@@ -4,14 +4,11 @@ from optimized import optimized
 
 if __name__ == "__main__":
     file_list = os.listdir('data')
+
     print("List of files in the data directory:", end='\n\n')
-
-    for file in file_list:
-        print(f"[{file_list.index(file) + 1}] {file}")
-
+    [print(f"[{file_list.index(file) + 1}] {file}") for file in file_list]
     print("\nSelect file to process: ", end='')
 
-    file_selected = ''
     try:
         file_selected = file_list[int(input()) - 1]
     except:

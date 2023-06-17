@@ -5,14 +5,13 @@ import time
 def optimized(file):
     start_time = time.time()
     stocks_list = read_csv(file)
-    print(f"\nProcessing {len(stocks_list)} stocks:")
-
     best_combo = get_combos(stocks_list)
-
     total_cost = 0
     total_profit = 0
 
+    print(f"\nProcessing {len(stocks_list)} stocks:")
     print(f"Best option selected: {len(best_combo)} stocks\n")
+
     for stock in best_combo:
         print(f"{stock[0]}, ", end='')
         total_cost += stock[1]

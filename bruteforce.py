@@ -6,13 +6,11 @@ import time
 def bruteforce(file):
     start_time = time.time()
     stocks_list = read_csv(file)
-
-    print(f"\nProcessing {len(stocks_list)} stocks:")
-
     best_combo = get_combos(stocks_list)
 
+    print(f"\nProcessing {len(stocks_list)} stocks:")
     print(f"Best option selected: {len(best_combo[0])} stocks\n")
-    for stock in best_combo[0]: print(f"{stock[0]}, ", end='')
+    [print(f"{stock[0]}, ", end='') for stock in best_combo[0]]
     print(f"\n\nTotal cost: {best_combo[2] / 100}€")
     print(f"Total profit: {round(best_combo[1], 2)}€")
     print("Time spent:", round(time.time() - start_time, 2), "seconds")
